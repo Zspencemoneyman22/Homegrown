@@ -1,0 +1,166 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta name="description" content="Homegrown — For the place that raised us." />
+  <title>Homegrown — Drop 001</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,600;1,600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="announcement">DROP 001 — ELMHURST, ILLINOIS · COMING SOON</div>
+
+  <header class="site-header">
+    <a class="brand" href="#top" aria-label="Homegrown home">Homegrown</a>
+    <nav class="desktop-nav" aria-label="Primary navigation">
+      <a href="#shop">Shop</a>
+      <a href="#story">Our Story</a>
+      <a href="#places">Places</a>
+    </nav>
+    <button class="cart-button" id="cartButton" aria-label="Open cart">Bag <span id="cartCount">0</span></button>
+  </header>
+
+  <main id="top">
+    <section class="hero">
+      <div class="hero-copy reveal">
+        <p class="eyebrow">Born in Elmhurst</p>
+        <h1>For the place<br><em>that raised us.</em></h1>
+        <p class="hero-sub">Premium hometown apparel built around the places, people, and stories that make somewhere feel like home.</p>
+        <div class="hero-actions">
+          <a class="btn btn-dark" href="#shop">Shop Drop 001</a>
+          <a class="text-link" href="#story">Read our story →</a>
+        </div>
+      </div>
+      <div class="hero-art reveal delay-1">
+        <div class="image-frame hero-frame">
+          <img src="assets/original-board.png" alt="Homegrown Elmhurst hat concept board" />
+        </div>
+        <p class="caption">Early concept study · Elmhurst, IL · 60126</p>
+      </div>
+    </section>
+
+    <section class="ticker" aria-label="Brand values">
+      <div>ELMHURST · CHICAGO · MIDWEST · HOME · HERITAGE · LOCAL PRIDE ·</div>
+      <div aria-hidden="true">ELMHURST · CHICAGO · MIDWEST · HOME · HERITAGE · LOCAL PRIDE ·</div>
+    </section>
+
+    <section class="section" id="shop">
+      <div class="section-heading reveal">
+        <div>
+          <p class="eyebrow">Drop 001</p>
+          <h2>Elmhurst Originals</h2>
+        </div>
+        <p class="section-note">Small run. Three hats. One hometown.</p>
+      </div>
+
+      <div class="product-grid">
+        <article class="product-card reveal">
+          <div class="product-image"><img src="assets/original-board.png" alt="The Original Homegrown hat concept" /></div>
+          <div class="product-info">
+            <div><h3>The Original</h3><p>Cream / Navy</p></div>
+            <span>$38</span>
+          </div>
+          <button class="quick-add" data-product="The Original" data-price="38">Add to bag</button>
+        </article>
+
+        <article class="product-card reveal delay-1">
+          <div class="product-image"><img src="assets/elmhurst-board.png" alt="The 60126 Homegrown hat concept" /></div>
+          <div class="product-info">
+            <div><h3>The 60126</h3><p>Washed green / cream</p></div>
+            <span>$38</span>
+          </div>
+          <button class="quick-add" data-product="The 60126" data-price="38">Add to bag</button>
+        </article>
+
+        <article class="product-card reveal delay-2">
+          <div class="product-image"><img src="assets/heritage-board.png" alt="Heritage Homegrown trucker hat concept" /></div>
+          <div class="product-info">
+            <div><h3>Heritage</h3><p>Distressed trucker</p></div>
+            <span>$42</span>
+          </div>
+          <button class="quick-add" data-product="Heritage" data-price="42">Add to bag</button>
+        </article>
+      </div>
+    </section>
+
+    <section class="story" id="story">
+      <div class="story-image reveal">
+        <img src="assets/heritage-board.png" alt="Rustic Homegrown hat concept collection" />
+      </div>
+      <div class="story-copy reveal delay-1">
+        <p class="eyebrow">The story</p>
+        <h2>Homegrown isn’t a town name.<br>It’s a feeling.</h2>
+        <p>We started with Elmhurst because it’s where we’re from. The streets, schools, restaurants, friends, summers, and little things you never realize matter until you leave.</p>
+        <p>Homegrown is our way of bottling that feeling — pride in the place that made you — and turning it into clothing worth keeping.</p>
+        <div class="signature">Homegrown, Elmhurst IL</div>
+      </div>
+    </section>
+
+    <section class="section places" id="places">
+      <div class="section-heading reveal">
+        <div>
+          <p class="eyebrow">Beyond 60126</p>
+          <h2>Built to travel.</h2>
+        </div>
+        <p class="section-note">Elmhurst is the first chapter, not the whole book.</p>
+      </div>
+
+      <div class="collection-grid">
+        <a class="collection-card reveal" href="#shop">
+          <img src="assets/elmhurst-board.png" alt="Elmhurst Homegrown collection" />
+          <div class="collection-overlay"><span>01</span><h3>Elmhurst</h3><p>The origin story</p></div>
+        </a>
+        <a class="collection-card reveal delay-1" href="#newsletter">
+          <img src="assets/chicago-board.png" alt="Chicago Homegrown collection concept" />
+          <div class="collection-overlay"><span>02</span><h3>Chicago</h3><p>Coming later</p></div>
+        </a>
+        <a class="collection-card reveal delay-2" href="#newsletter">
+          <img src="assets/golf-board.png" alt="Homegrown golf collection concept" />
+          <div class="collection-overlay"><span>03</span><h3>Homegrown Golf</h3><p>Lifestyle collection</p></div>
+        </a>
+      </div>
+    </section>
+
+    <section class="manifesto reveal">
+      <p>NOT SOUVENIRS.</p>
+      <h2>Clothes that feel local<br>without looking like merch.</h2>
+    </section>
+
+    <section class="newsletter" id="newsletter">
+      <div>
+        <p class="eyebrow">First access</p>
+        <h2>Stay Homegrown.</h2>
+        <p>Get first dibs on Drop 001, future cities, and limited collabs.</p>
+      </div>
+      <form id="newsletterForm">
+        <label class="sr-only" for="email">Email address</label>
+        <input id="email" type="email" placeholder="Email address" required />
+        <button type="submit">Join the list</button>
+      </form>
+      <p class="form-message" id="formMessage" role="status"></p>
+    </section>
+  </main>
+
+  <footer>
+    <div class="footer-brand">Homegrown</div>
+    <div class="footer-links"><a href="#shop">Shop</a><a href="#story">About</a><a href="mailto:hello@homegrown.example">Contact</a><a href="#">Instagram</a><a href="#">TikTok</a></div>
+    <p>© 2026 Homegrown. Elmhurst, Illinois.</p>
+  </footer>
+
+  <aside class="cart-drawer" id="cartDrawer" aria-hidden="true">
+    <div class="cart-header"><h2>Your bag</h2><button id="cartClose" aria-label="Close cart">×</button></div>
+    <div id="cartItems" class="cart-items"><p class="empty-cart">Your bag is empty.</p></div>
+    <div class="cart-footer">
+      <div class="cart-total"><span>Subtotal</span><strong id="cartTotal">$0</strong></div>
+      <button class="checkout" id="checkoutButton">Checkout</button>
+      <p>Demo storefront — connect Shopify, Stripe, or another checkout later.</p>
+    </div>
+  </aside>
+  <div class="scrim" id="scrim"></div>
+
+  <script src="script.js"></script>
+</body>
+</html>
