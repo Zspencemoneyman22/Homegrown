@@ -57,8 +57,14 @@
       </div>
 
       <div class="product-grid">
-        <article class="product-card reveal">
-          <div class="product-image"><img src="assets/original-board.png" alt="The Original Homegrown hat concept" /></div>
+        <article class="product-card reveal spin-card">
+          <div class="product-image spin-viewer" id="originalSpinViewer" aria-label="Interactive 360 degree view of The Original Homegrown hat">
+            <img id="originalSpinImage" src="assets/spin/the-original/frame-01.webp" alt="The Original Homegrown hat — front view" draggable="false" />
+            <div class="spin-badge" aria-hidden="true"><span class="spin-icon">↔</span> Drag to rotate</div>
+          </div>
+          <div class="spin-progress" aria-hidden="true">
+            <span class="spin-progress-fill" id="originalSpinProgress"></span>
+          </div>
           <div class="product-info">
             <div><h3>The Original</h3><p>Cream / Navy</p></div>
             <span>$38</span>

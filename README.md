@@ -38,3 +38,11 @@ Search the HTML for:
 - `Instagram` / `TikTok` to add real links
 
 The Google Fonts links in `index.html` require internet access. If you remove them, the site falls back to standard fonts.
+
+
+## Interactive 360-style product spin
+The first product, **The Original**, now includes an 8-frame drag-to-rotate viewer. The frames live in:
+
+`assets/spin/the-original/`
+
+The filenames must stay `frame-01.webp` through `frame-08.webp`. The viewer logic is at the bottom of `script.js`.
