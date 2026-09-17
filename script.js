@@ -56,75 +56,93 @@ const observer = new IntersectionObserver(entries=>{
 },{threshold:.1});
 document.querySelectorAll('.reveal').forEach(el=>observer.observe(el));
 
+const spinFrames = [
+  { src: 'assets/spin/frame-01-front.png', label: 'Front view' },
+  { src: 'assets/spin/frame-02-front-right.png', label: 'Front-right view' },
+  { src: 'assets/spin/frame-03-right.png', label: 'Right-side view' },
+  { src: 'assets/spin/frame-04-back-right.png', label: 'Back-right view' },
+  { src: 'assets/spin/frame-05-back.png', label: 'Back view' },
+  { src: 'assets/spin/frame-06-back-left.png', label: 'Back-left view' },
+  { src: 'assets/spin/frame-07-front-left.png', label: 'Front-left view' }
+];
 
-// The Original — 8-frame interactive product spin
-(() => {
-  const viewer = document.getElementById('originalSpinViewer');
-  const image = document.getElementById('originalSpinImage');
-  const progress = document.getElementById('originalSpinProgress');
-  if (!viewer || !image) return;
+const spinImage = document.getElementById('spinImage');
+const spinViewer = document.getElementById('spinViewer');
+const spinAngle = document.getElementById('spinAngle');
+const spinCount = document.getElementById('spinCount');
+const spinPrev = document.getElementById('spinPrev');
+const spinNext = document.getElementById('spinNext');
+const spinThumbs = Array.from(document.querySelectorAll('.spin-thumb'));
 
-  const frames = Array.from({ length: 8 }, (_, i) =>
-    `assets/spin/the-original/frame-${String(i + 1).padStart(2, '0')}.webp`
-  );
+if (spinImage && spinViewer) {
+  spinFrames.forEach(frame => {
+    const img = new Image();
+    img.src = frame.src;
+  });
 
-  // Preload the full spin so dragging feels immediate after the page loads.
-  frames.forEach(src => { const preload = new Image(); preload.src = src; });
-
-  let frame = 0;
+  let currentFrame = 0;
+  let dragStartX = 0;
   let dragging = false;
-  let lastX = 0;
-  let carry = 0;
-  const pixelsPerFrame = 28;
 
-  const render = () => {
-    image.src = frames[frame];
-    image.alt = `The Original Homegrown hat — view ${frame + 1} of ${frames.length}`;
-    if (progress) progress.style.transform = `scaleX(${frame + 1})`;
+  const updateSpin = (index) => {
+    currentFrame = (index + spinFrames.length) % spinFrames.length;
+    spinImage.src = spinFrames[currentFrame].src;
+    spinAngle.textContent = spinFrames[currentFrame].label;
+    spinCount.textContent = `${currentFrame + 1} / ${spinFrames.length}`;
+    spinThumbs.forEach((thumb, thumbIndex) => {
+      thumb.classList.toggle('active', thumbIndex === currentFrame);
+    });
   };
 
-  const stepBy = delta => {
-    frame = (frame + delta + frames.length) % frames.length;
-    viewer.classList.add('has-spun');
-    render();
+  const stepSpin = (direction) => {
+    updateSpin(currentFrame + direction);
   };
 
-  viewer.addEventListener('pointerdown', e => {
+  spinPrev.addEventListener('click', () => stepSpin(-1));
+  spinNext.addEventListener('click', () => stepSpin(1));
+
+  spinThumbs.forEach((thumb) => {
+    thumb.addEventListener('click', () => updateSpin(Number(thumb.dataset.index)));
+  });
+
+  const dragThreshold = 24;
+
+  spinViewer.addEventListener('mousedown', (event) => {
     dragging = true;
-    lastX = e.clientX;
-    carry = 0;
-    viewer.setPointerCapture?.(e.pointerId);
+    dragStartX = event.clientX;
+    spinViewer.classList.add('dragging');
   });
 
-  viewer.addEventListener('pointermove', e => {
+  window.addEventListener('mouseup', () => {
+    dragging = false;
+    spinViewer.classList.remove('dragging');
+  });
+
+  window.addEventListener('mousemove', (event) => {
     if (!dragging) return;
-    const dx = e.clientX - lastX;
-    lastX = e.clientX;
-    carry += dx;
-
-    while (carry >= pixelsPerFrame) { stepBy(-1); carry -= pixelsPerFrame; }
-    while (carry <= -pixelsPerFrame) { stepBy(1); carry += pixelsPerFrame; }
-  });
-
-  const stop = () => { dragging = false; carry = 0; };
-  viewer.addEventListener('pointerup', stop);
-  viewer.addEventListener('pointercancel', stop);
-  viewer.addEventListener('lostpointercapture', stop);
-
-  // Keyboard accessibility: focus the viewer and use left/right arrows.
-  viewer.tabIndex = 0;
-  viewer.addEventListener('keydown', e => {
-    if (e.key === 'ArrowRight') { e.preventDefault(); stepBy(1); }
-    if (e.key === 'ArrowLeft') { e.preventDefault(); stepBy(-1); }
-  });
-
-  // Trackpad / mouse wheel while hovering. Keep vertical page scrolling untouched.
-  viewer.addEventListener('wheel', e => {
-    if (Math.abs(e.deltaX) > Math.abs(e.deltaY) && Math.abs(e.deltaX) > 8) {
-      e.preventDefault();
-      stepBy(e.deltaX > 0 ? 1 : -1);
+    const deltaX = event.clientX - dragStartX;
+    if (Math.abs(deltaX) >= dragThreshold) {
+      stepSpin(deltaX < 0 ? 1 : -1);
+      dragStartX = event.clientX;
     }
-  }, { passive: false });
+  });
 
-  render();
-})();
+  spinViewer.addEventListener('touchstart', (event) => {
+    dragStartX = event.touches[0].clientX;
+  }, { passive: true });
+
+  spinViewer.addEventListener('touchmove', (event) => {
+    const deltaX = event.touches[0].clientX - dragStartX;
+    if (Math.abs(deltaX) >= dragThreshold) {
+      stepSpin(deltaX < 0 ? 1 : -1);
+      dragStartX = event.touches[0].clientX;
+    }
+  }, { passive: true });
+
+  spinViewer.addEventListener('keydown', (event) => {
+    if (event.key === 'ArrowLeft') stepSpin(-1);
+    if (event.key === 'ArrowRight') stepSpin(1);
+  });
+
+  updateSpin(0);
+}
